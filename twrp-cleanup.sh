@@ -37,14 +37,18 @@ done
 # Exit immediately on failure to avoid data loss
 find . -name '*.win???' -exec tar -xzvf '{}' \; || { echo "Unable to extract archive(s), script will now exit to avoid data loss" ; exit 1; }
 
-# Remove the archives and their checksums
-rm data.ext4.win???
-rm data.ext4.win???.md5
-
 # Find SMS/MMS databases and copy them to a safe place.
 # Exit immediately on failure to avoid data loss
 mkdir sms/
 find data/ -name '*mmssms*' -exec cp '{}' sms/ \; || { echo "Unable to locate SMS/MMS data, script will now exit to avoid data loss" ; exit 1; }
+
+# Remove the archives and their checksums
+rm data.ext4.win???
+rm data.ext4.win???.md5
+
+# If the system partition was present in the backup, delete the extracted contents.
+# They contain no user data.
+if [ -d system/ ]; then rm -rf system; fi
 
 cd data/
 
