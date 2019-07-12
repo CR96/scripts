@@ -6,12 +6,12 @@
 find . -name '*.win???' -exec tar -xzvf '{}' \;
 
 # Remove the archives and their checksums
-rm data.ext4.???
-rm data.ext4.???.md5
+rm data.ext4.win???
+rm data.ext4.win???.md5
 
 # Find SMS/MMS databases and copy them to a safe place
 mkdir sms/
-find data/ -name "*mmssms*" -exec cp {} sms/
+find data/ -name '*mmssms*' -exec cp '{}' sms/ \;
 
 cd data/
 
