@@ -22,4 +22,6 @@ rm -rf `find -type d -name cache`
 rm -rf app/
 
 # List 10 largest application data folders for manual review and deletion
+echo "Large application data folders"
+echo "=============================="
 du -a data/ | sort -n -r | head -n 10
