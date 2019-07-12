@@ -3,7 +3,7 @@
 ## Uncompress old TWRP data partition backups and discard unnecessary Android bloat.
 
 # Uncompress each TAR archive
-tar zxvf data.ext4.win???
+find . -name '*.win???' -exec tar -xzvf '{}' \;
 
 # Remove the archives and their checksums
 rm data.ext4.???
