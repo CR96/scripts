@@ -37,9 +37,11 @@ done
 
 # Check to see if the archives are compressed.
 # If one is compressed, they all should be.
-if [file '*.win000' | grep -q "compressed" ]; then
+if [[ $(file data.ext4.win000) == *compressed* ]]; then
+	echo "Backup is compressed. Extracting..."
 	find . -name '*.win???' -exec tar -xzvf '{}' \; || { echo "Unable to extract archive(s), script will now exit to avoid data loss" ; exit 1; }
 else
+	echo "Backup is not compressed. Extracting..."
 	find . -name '*.win???' -exec tar -xvf '{}' \; || { echo "Unable to extract archive(s), script will now exit to avoid data loss" ; exit 1; }
 fi
 
