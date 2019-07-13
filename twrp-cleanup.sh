@@ -53,6 +53,7 @@ find data/ -name '*mmssms*' -exec cp '{}' sms/ \; || { echo "Unable to locate SM
 # Remove the archives and their checksums
 rm data.ext4.win???
 rm data.ext4.win???.md5
+rm data.ext4.win???.sha2
 
 # If the system partition was present in the backup, delete the extracted contents.
 # They contain no user data.
