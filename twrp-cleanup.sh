@@ -1,6 +1,6 @@
 #!/bin/sh
 
-## Exract user data from old TWRP data partition backups and discard unnecessary Android bloat.
+## Extract user data from old TWRP data partition backups and discard unnecessary Android bloat.
 
 echo -e "
 #############################################################################################
@@ -33,7 +33,7 @@ select yn in "Yes" "No"; do
 done
 
 # Extract each TAR archive.
-# Exit immediately on failure to avoid data loss
+# Exit immediately on failure to avoid data loss.
 
 # Check to see if the archives are compressed.
 # If one is compressed, they all should be.
@@ -46,11 +46,11 @@ else
 fi
 
 # Find SMS/MMS databases and copy them to a safe place.
-# Exit immediately on failure to avoid data loss
+# Exit immediately on failure to avoid data loss.
 mkdir sms/
 find data/ -name '*mmssms*' -exec cp '{}' sms/ \; || { echo "Unable to locate SMS/MMS data, script will now exit to avoid data loss" ; exit 1; }
 
-# Remove the archives and their checksums
+# Remove the archives and their checksums.
 rm data.ext4.win???
 rm data.ext4.win???.md5
 rm data.ext4.win???.sha2
@@ -61,13 +61,13 @@ if [ -d system/ ]; then rm -rf system; fi
 
 cd data/
 
-# Remove all cache files from the backup
+# Remove all cache files from the backup.
 rm -rf `find -type d -name cache`
 
-# Remove application binaries, this folder contains no user data
+# Remove application binaries, this folder contains no user data.
 rm -rf app/
 
-# List 10 largest application data folders for manual review and deletion
+# List 10 largest application data folders for manual review and deletion.
 echo "Large application data folders"
 echo "=============================="
 du -a data/ | sort -n -r | head -n 10
