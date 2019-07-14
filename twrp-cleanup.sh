@@ -48,7 +48,12 @@ fi
 # Find SMS/MMS databases and copy them to a safe place.
 # Exit immediately on failure to avoid data loss.
 mkdir sms/
+
+# AOSP and Google Play Services SMS data
 find data/ -name '*mmssms*' -exec cp '{}' sms/ \; || { echo "Unable to locate SMS/MMS data, script will now exit to avoid data loss" ; exit 1; }
+
+# Android Messages data (includes RCS)
+find data/ -name 'bugle_db' -exec cp '{}' sms/ \; || { echo "UNable to locate SMS/MMS data, script will now exit to avoid data loss" ; exit 1; }
 
 # Remove the archives and their checksums.
 rm data.ext4.win???
