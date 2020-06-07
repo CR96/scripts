@@ -1,5 +1,5 @@
 #!/bin/sh
 
-# Print GitHub password to the terminal using lastpass-cli
-lpass login --color=auto $(git config user.email)
-lpass show Developer/GitHub
+# Print GitHub password to the terminal using bitwarden-cli
+bw login $(git config user.email)
+bw get password github.com
